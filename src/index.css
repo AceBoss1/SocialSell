@@ -1,0 +1,165 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   FILE PATH: src/index.css
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* ─── Reset ─────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ─── Design tokens ──────────────────────────────────────────────────────────── */
+:root {
+  --brand:      #6C63FF;
+  --brand-d:    #4f46e5;
+  --dark:       #0c0b2e;
+  --dark-2:     #13124a;
+  --success:    #10b981;
+  --warning:    #f59e0b;
+  --danger:     #ef4444;
+  --surface:    #ffffff;
+  --surface-2:  #f8f7ff;
+  --border:     #ededf5;
+  --text-1:     #0c0b2e;
+  --text-2:     #555555;
+  --text-3:     #aaaaaa;
+  --r-sm:       6px;
+  --r-md:       10px;
+  --r-lg:       14px;
+  --r-xl:       20px;
+  --shadow-sm:  0 2px 8px rgba(60,30,120,.06);
+  --shadow-md:  0 4px 20px rgba(60,30,120,.10);
+  --shadow-lg:  0 12px 40px rgba(60,30,120,.16);
+}
+
+/* ─── Base ───────────────────────────────────────────────────────────────────── */
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text-1);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,h2,h3,h4,h5,h6 { line-height: 1.15; font-weight: 800; color: var(--dark); }
+p  { line-height: 1.6; }
+a  { color: var(--brand); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+code, pre {
+  font-family: "SF Mono", "Fira Code", Menlo, monospace;
+  font-size: .875em;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar             { width: 5px; height: 5px; }
+::-webkit-scrollbar-track       { background: transparent; }
+::-webkit-scrollbar-thumb       { background: #ccc9f0; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #b0abdf; }
+
+/* ─── Form elements ──────────────────────────────────────────────────────────── */
+input, select, textarea, button { font-family: inherit; font-size: inherit; }
+
+input, select, textarea {
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 9px 12px;
+  outline: none;
+  background: var(--surface);
+  color: var(--text-1);
+  width: 100%;
+  transition: border-color .15s, box-shadow .15s;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(108,99,255,.12);
+}
+input::placeholder, textarea::placeholder { color: var(--text-3); }
+textarea { resize: vertical; min-height: 80px; }
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: var(--r-md);
+  padding: 9px 18px;
+  font-weight: 600;
+  transition: opacity .15s, transform .1s;
+  white-space: nowrap;
+}
+button:active  { transform: scale(.98); }
+button:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+
+/* ─── Utility classes ────────────────────────────────────────────────────────── */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); border: 0;
+}
+.truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ─── Dashboard shell ────────────────────────────────────────────────────────── */
+.dash-layout  { display: flex; min-height: 100vh; }
+.dash-sidebar {
+  width: 210px; flex-shrink: 0;
+  position: fixed; top: 0; left: 0; bottom: 0;
+  overflow-y: auto; z-index: 50;
+}
+.dash-main { margin-left: 210px; flex: 1; background: var(--surface-2); }
+
+/* ─── Card ───────────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 20px;
+}
+
+/* ─── Table ──────────────────────────────────────────────────────────────────── */
+table  { width: 100%; border-collapse: collapse; font-size: 13px; }
+thead tr { background: #f9f8ff; }
+th {
+  text-align: left; padding: 10px 14px;
+  font-size: 11px; font-weight: 700; color: var(--text-3);
+  text-transform: uppercase; letter-spacing: .05em;
+  border-bottom: 1px solid var(--border);
+}
+td { padding: 11px 14px; border-bottom: 1px solid #f5f5ff; color: var(--text-2); }
+tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: #fdfcff; }
+
+/* ─── Pill / badge ───────────────────────────────────────────────────────────── */
+.pill {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  padding: 2px 9px; border-radius: 999px; white-space: nowrap;
+}
+
+/* ─── Auth overlay ───────────────────────────────────────────────────────────── */
+.auth-overlay {
+  position: fixed; inset: 0;
+  background: rgba(12,11,46,.72);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 200; backdrop-filter: blur(4px); padding: 20px;
+}
+.auth-card {
+  background: #fff; border-radius: var(--r-xl);
+  padding: 36px 32px; width: 100%; max-width: 440px;
+  box-shadow: var(--shadow-lg); animation: fadeIn .2s ease both;
+}
+
+/* ─── Animations ─────────────────────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.fade-in { animation: fadeIn .25s ease both; }
+.spin    { display: inline-block; animation: spin .75s linear infinite; }
+
+/* ─── Responsive ─────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .dash-sidebar { transform: translateX(-100%); transition: transform .25s; }
+  .dash-sidebar.open { transform: translateX(0); }
+  .dash-main { margin-left: 0; }
+}
